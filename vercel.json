@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/control-escolar-desit-webapp",
+  "framework": "angular",
+  "ignoreCommand": "echo 'Use Vercel settings for root directory'",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
