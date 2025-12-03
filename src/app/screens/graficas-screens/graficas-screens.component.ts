@@ -194,15 +194,6 @@ export class GraficasScreenComponent implements OnInit{
             ]
           };
         }
-
-        // Histograma (linea)
-        if (this.lineChartData && this.lineChartData.datasets && this.lineChartData.datasets.length > 0) {
-          const total = admins + maestros + alumnos;
-          this.lineChartData = {
-            ...this.lineChartData,
-            datasets: [ { ...this.lineChartData.datasets[0], data: this.lineChartData.labels.map(() => total) } ]
-          };
-        }
       }, (error)=>{
         console.log("Error al obtener total de usuarios ", error);
 
