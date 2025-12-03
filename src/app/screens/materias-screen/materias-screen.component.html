@@ -1,0 +1,134 @@
+<div class="wrapper main-content-maestros">
+  <div class="header-home-maestros">
+  </div>
+  <div class="body-maestros">
+    <!-- Encabezado con los títulos de bienvenida y rol del usuario -->
+    <div class="row mt-5 mb-5">
+      <div class="col-12">
+        <span class="title-perfil">Bienvenido {{name_user}}</span>
+        <br>
+        <span class="title-perfil">{{rol}}</span>
+      </div>
+    </div>
+    <!-- Contenedor principal para la tabla de maestros -->
+    <div class="container">
+      <div class="row mt-3 mb-5" style="text-align: center;">
+        <div class="col-12">
+          <div class="alert alert-primary" role="alert">
+            <span class="title-table">Lista de materias registradas</span>
+          </div>
+          <!-- Filtro de búsqueda -->
+        <div class="title-table">
+          <mat-form-field appearance="outline" class="filtro">
+            <mat-label>Filtrar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Buscar por NRC, nombre o profesor asignado">
+          </mat-form-field>
+        </div>
+        </div>
+        <!-- Colocamos la tabla de materias -->
+        <ng-container *ngIf="lista_materias.length > 0; else noData">
+          <div class="table-scroll-wrapper">
+            <div class="mat-elevation-z8">
+
+              <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" style="min-width: 1200px; width: 100%;">
+                <!-- 1era columna -->
+                <ng-container matColumnDef="nrc">
+                    <!-- mat-sort-header es para habilitar la funcionalidad de ordenamiento en esta columna -->
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="nrc"> NRC </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nrc}} </td>
+                </ng-container>
+
+                <!-- 2da columna -->
+                <ng-container matColumnDef="nombre_materia">
+                  <!-- mat-sort-header es para habilitar la funcionalidad de ordenamiento en esta columna -->
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header="nombre_materia"> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre_materia}} </td>
+                </ng-container>
+                <!-- 3era columna -->
+                <ng-container matColumnDef="seccion">
+                  <th mat-header-cell *matHeaderCellDef> Sección </th>
+                  <td mat-cell *matCellDef="let element"> {{element.seccion}} </td>
+                </ng-container>
+
+                <!-- 4ta columna -->
+                <ng-container matColumnDef="dias">
+                    <th mat-header-cell *matHeaderCellDef> Días </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dias_json}} </td>
+                </ng-container>
+
+                <!-- 5ta columna -->
+                <ng-container matColumnDef="hora_inicio">
+                    <th mat-header-cell *matHeaderCellDef> Hora inicio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.hora_inicio}} </td>
+                </ng-container>
+                <ng-container matColumnDef="hora_fin">
+                  <th mat-header-cell *matHeaderCellDef> Hora fin </th>
+                  <td mat-cell *matCellDef="let element"> {{element.hora_fin}} </td>
+                </ng-container>
+
+                <!-- 6ta columna -->
+                <ng-container matColumnDef="salon">
+                    <th mat-header-cell *matHeaderCellDef> Salón </th>
+                    <td mat-cell *matCellDef="let element"> {{element.salon}} </td>
+                </ng-container>
+
+                <!-- 7ma columna -->
+                <ng-container matColumnDef="programa_educativo">
+                    <th mat-header-cell *matHeaderCellDef> Programa Educativo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.programa_educativo}} </td>
+                </ng-container>
+
+                <!-- 8va columna -->
+                <ng-container matColumnDef="profesor_asignado">
+                  <th mat-header-cell *matHeaderCellDef> Profesor Asignado </th>
+                  <td mat-cell *matCellDef="let element">
+                    {{ maestrosMap.get(+element.profesor_asignado) || element.profesor_nombre || element.profesor_asignado }}
+                  </td>
+                </ng-container>
+
+                <!-- 9va columna -->
+                <ng-container matColumnDef="creditos">
+                  <th mat-header-cell *matHeaderCellDef> Créditos </th>
+                  <td mat-cell *matCellDef="let element"> {{element.creditos}} </td>
+                </ng-container>
+
+                <!-- 10a columna - Editar (solo administradores) -->
+                <ng-container *ngIf="canSeeAdminItems()" matColumnDef="editar">
+                  <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                  <td mat-cell *matCellDef="let element" class="td-editar">
+                    <i *ngIf="canSeeAdminItems()" class="bi bi-pencil-square" (click)="goEditar(element.id)"></i>
+                  </td>
+                </ng-container>
+
+                <!-- 11a columna - Eliminar (solo administradores) -->
+                <ng-container *ngIf="canSeeAdminItems()" matColumnDef="eliminar">
+                  <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                  <td mat-cell *matCellDef="let element" class="td-eliminar">
+                    <i class="bi bi-trash3-fill" (click)="delete(element.id)"></i>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="desplegarColumnas"></tr>
+                <tr mat-row *matRowDef="let row; columns: desplegarColumnas;"></tr>
+              </table>
+            </div>
+            <!-- Colocamos la paginación de la tabla -->
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+              aria-label="Select page of periodic elements" style="min-width: 1200px; width: 100%;">
+            </mat-paginator>
+          </div>
+        </ng-container>
+        <!-- Si no hay datos, mostramos un mensaje alternativo -->
+        <ng-template #noData>
+          <div class="row">
+            <div class="col-12">
+              <div class="alert alert-warning" role="alert">
+                No hay materias registradas.
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

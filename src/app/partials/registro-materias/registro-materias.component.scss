@@ -1,0 +1,299 @@
+.wrapper {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/assets/images/fondo-azul.jpg');
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  padding: 0!important;
+  margin: 0!important;
+}
+
+.reg-shell {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.section-registro{
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.body-registro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 2.5rem;
+  gap: 2.2rem;
+  background: #fff;
+}
+
+
+.title-user{
+  font-size: 28px;
+  text-align: left;
+  font-family: Nexa-Bold;
+  letter-spacing: 2px;
+  color: #231F20;
+  text-transform: capitalize;
+  opacity: 1;
+}
+
+/* New: align title and actions similar to other registro forms */
+.title-actions {
+  width: 100%;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title-user {
+  margin: 0; /* ensure title aligns with form fields */
+}
+
+/* Botón regresar */
+.back-btn {
+  width: min(100%, 980px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-btn button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding-inline: 14px;
+}
+
+/* Botón minimal y consistente con la UI */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;     /* no todo en mayúsculas */
+  font-weight: 500;
+  border-radius: 10px;      /* mismo radio suave */
+  padding-inline: 14px;
+}
+
+.actions-row {
+  width: auto;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-btn {
+  border-radius: 30%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.back-icon {
+  width: auto!important;
+  height: auto!important;
+  font-size: 1.9rem;
+  color: #0092B8;
+}
+
+mat-form-field{
+  width: 90%!important;
+  margin-left: 5%;
+  height: 48px!important;
+  text-align: left!important;
+}
+
+.select-materias{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+  margin-left: 5%;
+}
+
+.title-materias {
+    font-size: 1.2rem; /* Asegura que el tamaño sea adecuado en dispositivos pequeños */
+    text-align: left;
+  }
+
+.select-horario{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+}
+
+.title-horario{
+  font-size: 1.2rem; /* Asegura que el tamaño sea adecuado en dispositivos pequeños */
+  text-align: left;
+  margin-left: 5%;
+}
+
+.subtitle-horario {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  font-size: 0.9rem; /* Asegura que el tamaño sea adecuado en dispositivos pequeños */
+  padding-left: 5rem;
+  color: #666666;
+}
+
+//Para la sección de botones
+.section-buttons{
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+
+.btn-primary {
+  width: 208px;
+  height: 48px;
+  background-color: #0092B8!important;
+  border-color: #0092B8!important;
+  border-radius: 8px!important;
+  opacity: 1;
+  //Fuente
+  text-align: center;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  background-color: #017895!important;
+  border-color: #017895!important;
+
+}
+
+.btn-danger{
+  width: 208px;
+  height: 48px;
+  border-radius: 8px!important;
+  opacity: 1;
+  //Fuente
+  text-align: center;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.mat-hint-margin {
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   Ajustes para el formulario en dispositivos móviles
+   ========================= */
+
+/* Título del formulario (en móvil) */
+@media (max-width: 700px) {
+
+  .wrapper {
+    background-image: url('/assets/images/fondo-azul.jpg');
+    background-color: #f5f7fa;
+  }
+
+  .reg-shell {
+    width: 90%;
+    margin-left: 5%;
+    background-color: #FFFFFF;
+  }
+
+  .title-user {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); /* Asegura que el tamaño sea adecuado */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    text-align: center; /* Centrado en dispositivos móviles */
+    white-space: normal; /* Evita que el texto se divida o se sobreponga */
+  }
+
+  .title-materias {
+    font-size: 1.2rem; /* Asegura que el tamaño sea adecuado en dispositivos pequeños */
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .select-materias {
+    width: 100%;
+    gap: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .select-horario {
+    width: 100%;
+  }
+
+  .subtitle-horario {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  font-size: 0.9rem; /* Asegura que el tamaño sea adecuado en dispositivos pequeños */
+  padding-left: 1rem;
+  color: #666666;
+}
+
+  mat-form-field {
+    width: 100% !important; /* Hace que el formulario ocupe todo el ancho */
+    margin-left: 0; /* Elimina el margen de la izquierda en móviles */
+  }
+
+  /* Ajuste para los botones */
+  .btn-primary, .btn-danger {
+    width: 100%; /* Ancho completo para los botones en móviles */
+    font-size: 14px; /* Reducción de tamaño en botones */
+    height: 48px;
+  }
+
+  .section-buttons {
+    flex-direction: column; /* Coloca los botones en columna en pantallas pequeñas */
+    gap: 1rem; /* Espaciado entre los botones */
+  }
+}
+
+/* =========================
+   Ajustes adicionales para la vista móvil (≤ 700px)
+   ========================= */
+@media (max-width: 700px) {
+
+  .mat-form-field {
+    width: 100% !important;
+    margin-left: 0; /* Elimina el margen */
+  }
+
+}
+
+.invalid-feedback, .feedback-error {
+  margin-left: 2.5rem;
+}
+
