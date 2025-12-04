@@ -155,4 +155,18 @@ export class RegistroAdminComponent implements OnInit {
       event.preventDefault();
     }
   }
+
+  // Solo letras y números (sin caracteres especiales) para CURP y RFC
+  public soloLetrasYNumeros(event: KeyboardEvent) {
+    const key = event.key;
+    // Permitir teclas de control: backspace, tab, enter, delete, arrows
+    const controlKeys = ['Backspace', 'Tab', 'Enter', 'Delete', 'ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (controlKeys.includes(key)) {
+      return; // no bloquear
+    }
+    // Bloquear cualquier caracter que NO sea alfanumérico
+    if (key.length === 1 && !/^[A-Za-z0-9]$/.test(key)) {
+      event.preventDefault();
+    }
+  }
 }

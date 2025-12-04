@@ -57,7 +57,7 @@
 
       <mat-form-field class="mat-input mat-hint-margin" appearance="outline">
         <mat-label>RFC</mat-label>
-        <input matInput minlength="12" maxlength="13" [(ngModel)]="admin.rfc" placeholder="Escribe RFC"
+        <input matInput minlength="12" maxlength="13" [(ngModel)]="admin.rfc" placeholder="Escribe RFC" (keypress)="soloLetrasYNumeros($event)"
           style="text-transform: uppercase;">
         <mat-hint align="end">{{admin.rfc?.length || 0}}/13</mat-hint>
       </mat-form-field>
